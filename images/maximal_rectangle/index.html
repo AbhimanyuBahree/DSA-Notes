@@ -1,191 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--* The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - Full-Screen Responsive Image Slider</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
-  <link rel="stylesheet" href="./style.css">
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap");
+    <!--* Title -->
+    <title>Image Slider | 10+ Vanilla Javascript Projects by Timonwa.</title>
 
-* {
+    <!-- * SEO Meta Tags -->
+    <!-- Primary Meta Tags -->
+    <meta
+      name="title"
+      content="Image Slider | 10+ Vanilla Javascript Projects by Timonwa."
+    />
+    <meta
+      name="description"
+      content="A collection of javascript projects from the javascript project series written on Timonwa's Notes Blog.'"
+    />
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://javascript-project-series.vercel.app"
+    />
+    <meta
+      property="og:title"
+      content="Image Slider | 10+ Vanilla Javascript Projects by Timonwa."
+    />
+    <meta
+      property="og:description"
+      content="A collection of javascript projects from the javascript project series written on Timonwa's Notes Blog.'"
+    />
+    <meta
+      property="og:image"
+      content="https://javascript-project-series.vercel.app/assets/seo-image.png"
+    />
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://javascript-project-series.vercel.app"
+    />
+    <meta
+      property="twitter:title"
+      content="Image Slider | 10+ Vanilla Javascript Projects by Timonwa."
+    />
+    <meta
+      property="twitter:description"
+      content="A collection of javascript projects from the javascript project series written on Timonwa's Notes Blog.'"
+    />
+    <meta
+      property="twitter:image"
+      content="https://javascript-project-series.vercel.app/assets/seo-image.png"
+    />
+
+    <!--* Icons -->
+    <!-- Google Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    />
+
+    <!--* CSS -->
+    <!-- Main CSS -->
+    
+    <!-- Accordion CSS -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <style type="text/css">
+  	/*! css reset */
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
+h1 {
+  margin-bottom: 0.8rem;
+}
+h2 {
+  margin-bottom: 0.75rem;
+}
+h3 {
+  margin-bottom: 0.6rem;
+}
+h4,
+p {
+  margin-bottom: 0.5rem;
+}
+h5 {
+  margin-bottom: 0.4rem;
+}
+h6 {
+  margin-bottom: 0.3rem;
+}
+ol {
+  margin-left: 30px;
+}
+/* ! */
 
+/*! main css */
+/** body wrapper */
 body {
-  font-family: "Lexend", sans-serif;
-  background-color: #362a2b;
-  color: #e5ebf3;
+  background-color: #babfffad;
+  color: #302a2a;
 }
 
-.slider {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+/** all links */
+a,
+a:link,
+a:hover,
+a:active,
+a:visited {
+  text-decoration: none;
+  color: #3b3bb9;
+}
+a:hover {
+  text-decoration: underline;
 }
 
-.slide {
-  position: absolute;
+/** nav bar */
+nav * {
+  margin: 0;
+}
+.nav-space {
+  height: 60px;
+}
+nav {
+  background-color: #fff;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  color: #301f1f;
+  height: 60px;
+  padding: 20px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid 2px #808080;
+  z-index: 1;
+}
+@media screen and (max-width: 900px) {
+  nav {
+    padding: 20px 80px;
+  }
+}
+@media screen and (max-width: 780px) {
+  nav {
+    padding: 20px 60px;
+  }
+}
+@media screen and (max-width: 500px) {
+  nav {
+    padding: 20px;
+  }
+}
+/* nav bar wrapper */
+.nav-cntr {
   width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
-.slide.current {
-  opacity: 1;
+/* logo */
+.logo > p a {
+  color: #301f1f;
+  font-weight: bold;
 }
-
-
-.slide:first-child {
-  background: url("1.jpeg") no-repeat
-    center top/cover;
-}
-
-.slide:nth-child(2) {
-  background: url("2.jpeg") no-repeat
-    center top/cover;
-}
-
-.slide:nth-child(3) {
-  background: url("3.jpeg") no-repeat
-    center top/cover;
-}
-
-.slide:nth-child(4) {
-  background: url("4.jpeg") no-repeat
-    center top/cover;
-}
-
-.slide:nth-child(5) {
-  background: url("5.jpeg") no-repeat
-    center top/cover;
-}
-
-.slide:nth-child(6) {
-  background: url("6.jpeg") no-repeat
-    center top/cover;
-}
-
-
-.buttons button#prev {
-  position: absolute;
-  top: 50%;
-  left: 1rem;
-}
-
-.buttons button#next {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-}
-
-.buttons button {
-  border: 2px solid #e5ebf3;
-  background-color: transparent;
-  color: #e5ebf3;
+/* nav bar link to the list of all the projects on the home page */
+.menu {
+  font-weight: bold;
+  color: #07ad4c;
+  text-transform: uppercase;
   cursor: pointer;
-  padding: 13px 15px;
-  border-radius: 50%;
-  outline: none;
+}
+.nav-links {
+  list-style-type: none;
+  position: absolute;
+  top: 60px;
+  right: -100%;
+  padding: 10px;
+  font-weight: 500;
+  background-color: #fff;
+  transition: right 300ms;
+  min-height: 300px;
+  width: 200px;
+  text-align: center;
+}
+.nav-links-active {
+  right: 0;
+}
+.nav-links > li {
+  margin: 10px 0;
+}
+.nav-links > li > a {
+  color: #301f1f;
+  margin-bottom: 20px;
+}
+.nav-links > li.active-link > a {
+  font-weight: bold;
 }
 
-.buttons button:hover {
-  background-color: #e5ebf3;
-  color: #362a2b;
+/** header */
+header {
+  width: 100%;
+  margin: 20px 0;
+  text-align: center;
+}
+header img {
+  border-radius: 10px;
+  max-height: 300px;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 700px) {
+  header img {
+    height: auto;
+    width: 100%;
+  }
 }
 
-@media (min-width: 640px) and (min-height: 640px) {
-  .slide .content {
-    bottom: 70px;
-    left: -600px;
-    width: 600px;
-    padding: 2rem;
-    line-height: 1.6;
-  }
-
-  .slide .content h1 {
-    font-size: 2rem;
-  }
-
-  .slide.current .content {
-    transform: translateX(600px);
-  }
+/** main */
+.description h2 {
+  font-weight: normal;
 }
-</style>
-</head>
+main section {
+  margin-bottom: 40px;
+}
+main section > div:not(:first-of-type) {
+  margin-top: 20px;
+}
+footer {
+  border-top: 2px solid #808080;
+  padding: 20px;
+  text-align: center;
+}
+/* ! */
+  </style>
 
-<body>
-  <!-- partial:index.partial.html -->
-  <div class="slider">
-    <div class="slide current"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
+  <body>
 
-  </div>
-  <div class="buttons">
-    <button id="prev"><i class="fas fa-arrow-left"></i></button>
-    <button id="next"><i class="fas fa-arrow-right"></i></button>
-  </div>
-  <!-- partial -->
-  <script>
-    const slides = document.querySelectorAll(".slide");
-    const nextButton = document.getElementById("next");
-    const prevButton = document.getElementById("prev");
-    const auto = true;
-    const intervalTime = 5000;
-    let slideInterval;
+        
+          <!--* slider cntr -->
+          <div class="slider">
+            <!-- image -->
+            <img class="slide-image" src="" alt="" />
+            <!-- the count and number of the images -->
+            <p>
+              <span class="slide-image-number"></span> of
+              <span class="total-image-number"></span>
+            </p>
+            <!-- previous btn -->
+            <div class="btn backward">
+              <span class="material-icons-outlined"> chevron_left </span>
+            </div>
+            <!-- next btn -->
+            <div class="btn forward">
+              <span class="material-icons-outlined"> chevron_right </span>
+            </div>
+          </div>
+    <!--* JavaScripts -->
+    <!-- Main script -->
+    <script>
+    	//* main menu toggle
+// variables
+const menu = document.querySelector(".menu");
+const navLinks = document.querySelector(".nav-links");
 
-    const nextSlide = () => {
-      const current = document.querySelector(".current");
-      current.classList.remove("current");
-      if (current.nextElementSibling) {
-        current.nextElementSibling.classList.add("current");
-      } else {
-        slides[0].classList.add("current");
-      }
-    };
+// function to open and close main menu
+menu.addEventListener("click", function () {
+  navLinks.classList.toggle("nav-links-active");
+});
+    </script>
 
-    const prevSlide = () => {
-      const current = document.querySelector(".current");
-      current.classList.remove("current");
-      if (current.previousElementSibling) {
-        current.previousElementSibling.classList.add("current");
-      } else {
-        slides[slides.length - 1].classList.add("current");
-      }
-    };
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
 
-    nextButton.addEventListener("click", () => {
-      nextSlide();
-      if (auto) {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, intervalTime);
-      }
-    });
-    prevButton.addEventListener("click", () => {
-      prevSlide();
-      if (auto) {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, intervalTime);
-      }
-    });
 
-    if (auto) {
-      slideInterval = setInterval(nextSlide, intervalTime);
-    }
-
-  </script>
-
-</body>
-
+    <!-- Accordion script -->
+    <script src="./script.js"></script>
+  </body>
 </html>
